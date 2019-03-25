@@ -1,0 +1,46 @@
+version: "3.2"
+services:
+  php:
+    build: "./docker/dev/php"
+    networks:
+      - backend
+    volumes:
+      - ./app:/var/www/html/
+  apache:
+    build: "./docker/dev/apache"
+    depends_on:
+      - php
+      - mysql
+    networks:
+      - backend
+    ports:
+      - "80:80"
+    volumes:
+      - ./app:/var/www/html/
+  mysql:
+    build: "./docker/dev/mysql"
+    working_dir: /
+    networks:
+      - backend
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+    volumes: 
+      - /data-mysql:/var/lib/mysql
+  phpmyadmin:
+    build: "./docker/dev/phpmyadmin"
+    depends_on:
+      - mysql
+    restart: always
+    links:
+      - mysql:mysql
+    ports:
+      - 8181:80
+    environment:
+      MYSQL_USERNAME: root
+      MYSQL_ROOT_PASSWORD: rootpassword
+      PMA_HOST: mysql
+    networks:
+      - backend
+
+networks:
+  backend:

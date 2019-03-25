@@ -1,0 +1,9 @@
+RewriteEngine On # Turn on the rewriting engine
+RewriteRule ^users/?$ users.php [NC,L]
+RewriteRule ^users/([0-9]+)/?$ users.php?id=$1 [NC,L]
+RewriteRule ^session/?$ session.php [NC,L]
+RewriteRule ^session/([0-9]+)/?$ session.php?id=$1 [NC,L]
+RewriteRule ^sections/?$ sections.php [NC,L]
+RewriteRule ^sections/([0-9]+)/?$ sections.php?id=$1 [NC,L]
+RewriteRule ^token/?$ token.php [NC,L]
+RewriteRule ^token/([0-9]+)/?$ token.php?id=$1 [NC,L]

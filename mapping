@@ -1,0 +1,53 @@
+login(View)                            Session
+   routers:
+    if exists token
+      redirect(/dashboard)
+
+   request: /session                    
+     {user, pass}         ->       validUser(user, pass)
+                                         Si
+                                       
+                                  create SESSION(User) 
+   response:/session              create TOKEN(User::id)
+       {token}            <-       return 200:TOKEN
+    saveToken(token)                               
+   redirect(/dashboard)                                   
+   
+                                      No
+                                    return  401
+
+-----------------------------------------------------------
+                                        <Core>
+                                    loadToken()
+                                      tokenCurrent = getHeaders();
+                                      if exists tokenCurrent
+                                        decodedToken = decode(tokenCurrent)
+                                        if decodedToken is Expired
+                                            refreshToken(tokenCurrent)
+                                            loadToken()      
+                                        if decodedToken is Invalid
+                                            response -> 401
+
+                                        $session = new Session(decodedToken)
+                                      else
+                                        response -> 401
+
+                                        <Session>
+                                    $session = New Session(decodedToken);
+                                        <Session::__constructor>
+                                     
+                                        if exists SESSION user
+                                            user = SESSION user
+                                        else    
+                                            id = decodedToken['data];
+                                            user = New User(id)
+                                            if user is valid 
+                                                CREATE SESSION User
+                                            else
+                                                response -> 401
+
+------------------------------------------------------------
+
+dashboard(view)                          Sections
+   request: /sections                     <Core>  
+        { token }          ->            
