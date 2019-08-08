@@ -1,4 +1,7 @@
 .DEFAULT_GOAL := help
+APP_DIR         = app
+
+WORKDIR         ?= ${APP_DIR}
 
 define detect_user
 	$(eval WHOAMI := $(shell whoami))
@@ -12,7 +15,10 @@ endef
 
 composer:
 	$(call detect_user) 
-	docker run -it \
+	docker run \
+		-it \
+		--rm \
+		--workdir /${WORKDIR} \
 		-u ${USERID}:${USERID} \
 		-v $(PWD)/app:/var/www/html \
 		-v ${PWD}/passwd:/etc/passwd:ro \
