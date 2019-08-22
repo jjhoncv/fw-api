@@ -29,3 +29,13 @@ if (!is_object($session->getUser()->getRole()) &&
     // ));
 }
 // if ($session->getUser()->getLoggedIn() === false) {header("location:/admin");}
+
+
+
+fetch('http://localhost/api/v1/session', {
+    method: 'POST',
+    body: JSON.stringify({username:'aa', password:'xxxx'}),
+    headers:{
+      'Content-Type': 'application/json'
+    }
+  }).then(res => res.json())

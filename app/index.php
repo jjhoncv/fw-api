@@ -27,8 +27,8 @@
 <?php
 
     $host = 'mysql';
-    $user = 'docker';
-    $pass = 'docker';
+    $user = 'jhonnatan';
+    $pass = '123456';
     $conn = new mysqli($host, $user, $pass);
 
     if ($conn->connect_error) {
