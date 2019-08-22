@@ -18,11 +18,11 @@ composer:
 	docker run \
 		-it \
 		--rm \
-		--workdir /${WORKDIR} \
+		--workdir /var/www/html \
 		-u ${USERID}:${USERID} \
 		-v $(PWD)/app:/var/www/html \
 		-v ${PWD}/passwd:/etc/passwd:ro \
-		fw-api_php \
+		fw-api_apache \
 		composer update
 
 start: ## Up the docker containers, use me with: make start
