@@ -39,11 +39,25 @@ class Session extends Rest
             );
             $this->_code = 200;
             $this->_data = array(
+                "code" => 200,
                 "data" => array(
-                    "token" => $this->_token->getToken(),
+                    "id" => $row['id_user'],
+                        "name" => $this->_user->getName(),
+                        "surname" => $this->_user->getSurname(),
+                        "mail" => $this->_user->getMail(),
+                        "photo" => $this->_user->getPhoto(),
+                        "login" => $this->_user->getLogin(),
+                        "password" => $this->_user->getPassword(),
+                        "token" => $this->_token->getToken(),
+                    // "code" => 200,
+                    // "data"=> array(
+                        
+                    // ),
+                    // "message" => ""
                 ),
-            );
+                "message" => "");
         }
+
         $this->response(
             $this->json($this->_data)
             , $this->_code);
@@ -66,3 +80,8 @@ class Session extends Rest
         // header("Location: login.php");
     }
 }
+
+
+
+	
+

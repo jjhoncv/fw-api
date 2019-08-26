@@ -32,10 +32,10 @@ if (!is_object($session->getUser()->getRole()) &&
 
 
 
-fetch('http://localhost/api/v1/session', {
-    method: 'POST',
-    body: JSON.stringify({username:'aa', password:'xxxx'}),
-    headers:{
-      'Content-Type': 'application/json'
-    }
-  }).then(res => res.json())
+// fetch('http://localhost/api/v1/session', {
+//     method: 'POST',
+//     body: JSON.stringify({username:'aa', password:'xxxx'}),
+//     headers:{
+//       'Content-Type': 'application/json'
+//     }
+//   }).then(res => res.json())

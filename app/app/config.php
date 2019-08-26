@@ -2,8 +2,8 @@
 $_config['server']['url'] = "http://localhost/";
 $_config['server']['host'] = $_SERVER['DOCUMENT_ROOT'] . "/";
 
-define('DBUSER', 'root');
-define('DBPASS', 'rootpassword');
+define('DBUSER', 'jhonnatan');
+define('DBPASS', '123456');
 define('DBHOST', 'mysql');
 define('DBNAME', 'fw');
 
