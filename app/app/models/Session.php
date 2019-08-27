@@ -6,11 +6,12 @@ require_once _model_ . "Token.php";
 
 class Session extends Rest
 {
-    private $_user, $_token, $_code = 400;
-    private $_data = array("error" => array(
-        "status" => 400,
-        "description" => "Unauthorized",
-    ));
+    private $_user, $_token, $_code = 401;
+    private $_data = array(
+        "code" => 401,
+        "message" => "Unauthorized",
+        "data" => ""
+    );
 
     public function __construct($token = '')
     {
@@ -42,18 +43,13 @@ class Session extends Rest
                 "code" => 200,
                 "data" => array(
                     "id" => $row['id_user'],
-                        "name" => $this->_user->getName(),
-                        "surname" => $this->_user->getSurname(),
-                        "mail" => $this->_user->getMail(),
-                        "photo" => $this->_user->getPhoto(),
-                        "login" => $this->_user->getLogin(),
-                        "password" => $this->_user->getPassword(),
-                        "token" => $this->_token->getToken(),
-                    // "code" => 200,
-                    // "data"=> array(
-                        
-                    // ),
-                    // "message" => ""
+                    "name" => $this->_user->getName(),
+                    "surname" => $this->_user->getSurname(),
+                    "mail" => $this->_user->getMail(),
+                    "photo" => $this->_user->getPhoto(),
+                    "login" => $this->_user->getLogin(),
+                    "password" => $this->_user->getPassword(),
+                    "token" => $this->_token->getToken()
                 ),
                 "message" => "");
         }

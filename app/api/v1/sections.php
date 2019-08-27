@@ -30,7 +30,9 @@ switch ($method) {
         }
 
         $data = array(
+            "code" => 200,
             "data" => $list,
+            "message" => ""
         );
 
         http_response_code($code);
