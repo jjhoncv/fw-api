@@ -8,39 +8,39 @@ require_once _model_ . "Sections.php";
 $method = $_SERVER["REQUEST_METHOD"];
 
 switch ($method) {
-    case 'GET':
-        $get = (object) $_GET;
-        if (isset($get->_id)) {
-            $id = intval($_GET["id"]);
-            $section = new Section($id);
-        } else {
-            $modules = explode(",", $session->getUser()->getModules());
-            sort($modules);
-            if (is_array($modules)) {
-                $sections = new Sections();
-                foreach ($modules as $key => $value) {
-                    $module = new Module($value);
-                    $list[] = array(
-                        'id' => $value,
-                        'name' => $module->getName(),
-                        'sections' => $sections->getSectionsByModule($value),
-                    );
-                }
-            }
+  case 'GET':
+    $get = (object) $_GET;
+    if (isset($get->_id)) {
+      $id = intval($_GET["id"]);
+      $section = new Section($id);
+    } else {
+      $modules = explode(",", $session->getUser()->getModules());
+      sort($modules);
+      if (is_array($modules)) {
+        $sections = new Sections();
+        foreach ($modules as $key => $value) {
+          $module = new Module($value);
+          $list[] = array(
+            'id' => $value,
+            'name' => $module->getName(),
+            'sections' => $sections->getSectionsByModule($value),
+          );
         }
+      }
+    }
 
-        $data = array(
-            "code" => 200,
-            "data" => $list,
-            "message" => ""
-        );
+    $data = array(
+      "code" => 200,
+      "data" => $list,
+      "message" => ""
+    );
 
-        http_response_code($code);
-        echo json_encode($data);
+    http_response_code($code);
+    echo json_encode($data);
 
-        break;
-    default:
-        // Invalid Request Method
-        header("HTTP/1.0 405 Method Not Allowed");
-        break;
+    break;
+  default:
+    // Invalid Request Method
+    header("HTTP/1.0 405 Method Not Allowed");
+    break;
 }

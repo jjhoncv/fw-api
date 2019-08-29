@@ -9,25 +9,27 @@ require_once _model_ . "Token.php";
 session_start();
 $session = new Session();
 $token = new Token();
+$token->validToken();
 
-$data = json_decode(file_get_contents("php://input"));
-if (!empty($data->username) && !empty($data->password)) {
-    $session->validAccess($data->username, $data->password);
-} else {
-    $token->validToken();
-}
+// $data = json_decode(file_get_contents("php://input"));
+// if (!empty($data->username) && !empty($data->password)) {
+//   $session->validAccess($data->username, $data->password);
+// } else {
+// }
 
-if (!is_object($session->getUser()->getRole()) &&
-    $session->getUser()->getLoggedIn() === false) {
-    // $code = 400;
-    // http_response_code($code);
-    // echo json_encode(array(
-    //     "error" => array(
-    //         "status" => $code,
-    //         "description" => "Unauthorized",
-    //     ),
-    // ));
-}
+// if (
+//   !is_object($session->getUser()->getRole()) &&
+//   $session->getUser()->getLoggedIn() === false
+// ) {
+  // $code = 400;
+  // http_response_code($code);
+  // echo json_encode(array(
+  //     "error" => array(
+  //         "status" => $code,
+  //         "description" => "Unauthorized",
+  //     ),
+  // ));
+// }
 // if ($session->getUser()->getLoggedIn() === false) {header("location:/admin");}
 
 

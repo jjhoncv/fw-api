@@ -8,7 +8,7 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 header("Content-Type:application/json");
 
 
- // GET
+// GET
 // if (isset($_GET) && isset($_GET['session'])) {
 //     $data = array('name' => 'xxx');
 //     echo json_encode($data);
@@ -30,6 +30,6 @@ echo "user : " . ($_POST['user']);
 // echo "aa : " . $user;
 // die();
 if ($user === "root" && $password === "admin") {
-    echo json_encode(array('logged' => true));
+  echo json_encode(array('logged' => true));
 }
 // }
