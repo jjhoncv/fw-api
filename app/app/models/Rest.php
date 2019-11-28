@@ -20,6 +20,16 @@ class Rest
     exit;
   }
 
+  protected function request()
+  {
+    return $this->_request;
+  }
+
+  protected function method()
+  {
+    return $this->_method;
+  }
+
   private function inputs()
   {
     switch ($_SERVER['REQUEST_METHOD']) { // Make switch case so we can add additional
@@ -29,7 +39,8 @@ class Rest
         //$this->logRequest();
         break;
       case "POST":
-        $this->_request = $this->cleanInputs($_REQUEST); //or $_GET
+        $this->_request = json_decode(file_get_contents("php://input"));
+        // $this->_request = $this->cleanInputs($_REQUEST); //or $_GET
         $this->_method = "POST";
         //$this->logRequest();
         break;

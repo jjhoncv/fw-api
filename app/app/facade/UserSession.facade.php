@@ -1,43 +1,43 @@
 <?php
 require_once _service_ . "UserSession.service.php";
-require_once _model_ . "Rest.php";
 
-class UserSessionFacade extends Rest
+class UserSessionFacade
 {
   private $_userSessionService;
+  private $_data;
 
   public function __construct($username, $password)
   {
-    parent::__constructor();
+    // parent::__constructor();
     $this->_userSessionService = new UserSessionService($username, $password);
     $this->_userSessionService->loggin();
+    // $this->data();
+
   }
 
-  public function responseJSON()
+  public function data()
   {
-    $user = $this->_userSessionService->getUser();
-    $token = $this->_userSessionService->getToken();
-    $code = $this->_userSessionService->getCode();
-    $message = $this->_userSessionService->getMessage();
 
-    $this->response(
-      $this->json(
-        array(
-          "code" => $code,
-          "data" => array(
-            "id" => $user->getId(),
-            "name" => $user->getName(),
-            "surname" => $user->getSurname(),
-            "mail" => $user->getMail(),
-            "photo" => $user->getPhoto(),
-            "login" => $user->getLogin(),
-            "password" => $user->getPassword(),
-            "token" => $token->getToken()
-          ),
-          "message" => $message
-        )
-      ),
-      $code
-    );
+    // $data = new stdClass();
+    // $data->user = $this->_userSessionService->getUser();
+    // $data->token = $this->_userSessionService->getToken();
+    // $data->code = $this->_userSessionService->getCode();
+    // $data->message = $this->_userSessionService->getMessage();
+
+    return $this->_userSessionService;
+    // return $data;
+    // $this->_data = array(
+    //   "user" => $this->_userSessionService->getUser(),
+    //   "token" => $this->_userSessionService->getToken(),
+    //   "code" => $this->_userSessionService->getCode(),
+    //   "message" => $this->_userSessionService->getMessage()
+    // );
+
+    // $user = $this->_userSessionService->getUser();
+    // $token = $this->_userSessionService->getToken();
+    // $code = $this->_userSessionService->getCode();
+    // $message = $this->_userSessionService->getMessage();
+
+
   }
 }

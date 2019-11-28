@@ -48,6 +48,6 @@ class UserSessionService
 
   public function getToken()
   {
-    return $this->_token;
+    return $this->_token->getToken();
   }
 }
